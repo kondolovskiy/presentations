@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Shower Presentation Engine</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <link rel="stylesheet" href="node_modules/@shower/ribbon/styles/styles.css">
+    <style>
+        .shower {
+            --slide-ratio: calc(16 / 9);
+        }
+
+        .small p {
+            font-size: 16px;
+        }
+
+        .table-row {
+            display: table-row;
+        }
+
+        .values dd {
+            display: table-cell;
+        }
+
+        .values {
+            font-size: 16px;
+            overflow: scroll;
+            max-height: 60vh;
+        }
+    </style>
+</head>
+
+<body class="shower list">
+
+    <header class="caption">
+        <h1>Позиціонування елементів на сторіці</h1>
+    </header>
+
+    <section class="slide" id="cover">
+        <h2>Основи Fron-End розробки</h2>
+        <h3>Позиціонування елементів на сторінці</h3>
+        <figure>
+            <img class="cover" src="pictures/coding-cover.jpeg">
+        </figure>
+        <style>
+            #cover h2 {
+                margin: 30px 0 0;
+                color: white;
+                text-align: center;
+                font-size: 70px;
+            }
+
+            #cover h3 {
+                margin: 30px 0 0;
+                color: white;
+                text-align: center;
+                font-size: 50px;
+                text-shadow: 2px 2px 2px #000000;
+            }
+
+            .cover {
+                width: 100vw;
+                height: 100vh;
+                object-fit: cover;
+            }
+        </style>
+    </section>
+
+    <section class="slide">
+        <h2>Try it</h2>
+
+        <div class="demo-wrapper">
+            <div class="buttons">
+                <div class="demo-button active">
+                    <pre>
+                        <code>
+position: static;
+                        </code>
+                    </pre>
+                </div>
+
+                <div class="demo-button">
+                    <pre>
+                        <code>
+position: relative;
+top: 40px; left: 40px;
+                        </code>
+                    </pre>
+                </div>
+
+                <div class="demo-button">
+                    <pre>
+                        <code>
+position: absolute;
+top: 40px; left: 40px;
+                        </code>
+                    </pre>
+                </div>
+
+                <div class="demo-button">
+                    <pre>
+                        <code>
+position: sticky;
+top: 20px;
+                        </code>
+                    </pre>
+                </div>
+            </div>
+
+            <div class="elements">
+                <div class="block block-1"></div>
+                <div class="block block-2"></div>
+                <div class="block block-3"></div>
+                <div class="text">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Eligendi molestias quis beatae vitae cumque consectetur expedita
+                    sed voluptates saepe officia deleniti, aspernatur quo vero minima sit iure
+                    voluptatum fugit necessitatibus.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Eligendi molestias quis beatae vitae cumque consectetur expedita
+                    sed voluptates saepe officia deleniti, aspernatur quo vero minima sit iure
+                    voluptatum fugit necessitatibus.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Eligendi molestias quis beatae vitae cumque consectetur expedita
+                    sed voluptates saepe officia deleniti, aspernatur quo vero minima sit iure
+                    voluptatum fugit necessitatibus.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Eligendi molestias quis beatae vitae cumque consectetur expedita
+                    sed voluptates saepe officia deleniti, aspernatur quo vero minima sit iure
+                    voluptatum fugit necessitatibus.
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Eligendi molestias quis beatae vitae cumque consectetur expedita
+                    sed voluptates saepe officia deleniti, aspernatur quo vero minima sit iure
+                    voluptatum fugit necessitatibus.
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .demo-wrapper {
+                display: flex;
+                justify-content: space-between;
+                gap: 20px;
+            }
+
+            .elements {
+                max-height: 100vh;
+                overflow: scroll;
+                position: relative;
+            }
+
+            .demo-button {
+                padding: 20px 20px 0;
+                margin-bottom: 10px;
+                cursor: pointer;
+                border: 2px solid #000;
+            }
+
+            .demo-button.active {
+                border-color: aquamarine;
+            }
+
+            .block {
+                width: 100px;
+                height: 100px;
+                border: 1px solid #000;
+                background-color: aqua;
+                float: left;
+            }
+
+            .block+.block {
+                margin-left: 10px;
+            }
+
+            .block-2 {
+                background-color: yellow;
+            }
+
+            .text {
+                clear: both;
+            }
+
+            .demo-button pre code {
+                line-height: 1;
+                font-size: 12px;
+            }
+        </style>
+
+        <script>
+            function removeActive() {
+                document.querySelectorAll('.demo-button').forEach(b => b.classList.remove('active'))
+            }
+
+            window.addEventListener('load', () => {
+                document.querySelectorAll('.demo-button').forEach(b => {
+                    b.addEventListener('click', function () {
+                        const demoBlock = document.querySelector('.block-2')
+                        const style = this.innerText
+                        removeActive()
+                        this.classList.add('active')
+                        demoBlock.style = style;
+                    })
+                })
+            })
+        </script>
+
+    </section>
+
+    <section class="slide">
+        <h2>CSS властивість position</h2>
+        <p>
+            Властивість <code>position</code> визначає тип позиціювання відносно вікна
+            браузера або інших елементів:
+            <code>static, relative, absolute, fixed</code> або <code>sticky</code>
+            (статичний, відносний, абсолютний, фіксований або клейкий).
+        </p>
+        <p>
+            Властивість <code>position</code> використовується разом з
+            <code>top</code>,
+            <code>right</code>,
+            <code>bottom</code> і
+            <code>left</code>
+            для позиціювання елементу в потрібному місці.
+        </p>
+    </section>
+
+    <section class="slide">
+        <h2>CSS властивість position</h2>
+        <figure>
+            <img class="meme" src="pictures/meme.jpeg" />
+        </figure>
+
+        <style>
+            .meme {
+                display: block;
+                margin: 0 auto;
+                max-height: 50vh;
+            }
+        </style>
+    </section>
+
+    <section class="slide">
+        <h2>Синтаксис</h2>
+        <pre>
+            <code>position: static|
+            absolute|
+            fixed|
+            relative|
+            sticky|
+            initial|
+            inherit;</code>
+        </pre>
+    </section>
+
+    <section class="slide">
+        <h2>Значення</h2>
+        <dl class="values">
+            <div class="table-row">
+                <dt><code>static</code></dt>
+                <dd>
+                    <p>Елементи відображаються як зазвичай (в потоці формування документа). Використання властивостей
+                        <code>left</code>, <code>top</code>, <code>right</code>, <code>bottom</code> та
+                        <code>z-index</code> не призводить до будь-яких результатів. Без задання.
+                    </p>
+
+                </dd>
+            </div>
+            <div class="table-row">
+                <dt><code>absolute</code></dt>
+                <dd>
+                    <p>Видаляє елемент з загального потоку (місце, що звільнив елемент заповнюється іншими елементами) і
+                        вставляється відносно свого батьківського, не статично позиційованого елемента, якщо такого
+                        елемента немає, то їм вважається вікно браузера (При цьому ширина елемента, без задання,
+                        встановлюється за його вмістом). Нове місце розраховується за допомогою властивостей
+                        <code>left</code>, <code>top</code>, <code>right</code> та <code>bottom</code>
+                    </p>
+
+                    <p>На положення впливає значення властивості <code>position</code> батьківського елемента. Так, якщо
+                        у батька значення <code>position</code> встановлено як <code>static</code> або батька немає, то
+                        відлік координат ведеться від краю вікна браузера.</p>
+
+                    <p>Якщо у батька значення position задано як <code>relative</code>, то відлік координат ведеться від
+                        краю батьківського елементу.</p>
+
+                </dd>
+            </div>
+            <div class="table-row">
+                <dt><code>fixed</code></dt>
+                <dd>
+                    <p>За своєю дією це значення близьке до <code>absolute</code>, але на відміну від нього позиціонує
+                        елемент відносно вікна браузера, а не документа та не змінює свого положення при прокручуванні
+                        веб-сторінки.</p>
+
+                </dd>
+            </div>
+            <div class="table-row">
+                <dt><code>relative</code></dt>
+                <dd>
+                    <p>Відносне позиціювання. Положення елемента встановлюється відносно його поточного положення.
+                        Додавання властивостей <code>left</code>, <code>top</code>, <code>right</code> і
+                        <code>bottom</code> змінює позицію елемента і зрушує його в ту чи іншу сторону. Ця властивість
+                        дозволяє змінюва ти позицію елемента без зміни макету.
+                    </p>
+
+                </dd>
+            </div>
+            <div class="table-row">
+                <dt><code>sticky</code></dt>
+                <dd>
+                    <p>Це поєднання відносного і фіксованого позиціонування. Елемент розглядається як відносно
+                        позиційований і прокручується разом з вмістом сторінки до тих під, поки він не перетинає певний
+                        поріг, після чого він стає фіксованим. Зазвичай застосовується для фіксації заголовка на одному
+                        місці, доки вміст, до якого належить заголовок, прокручується на сторінці.</p>
+
+                </dd>
+            </div>
+            <div class="table-row">
+                <dt><code>initial</code></dt>
+                <dd>
+                    <p>Встановлює властивість у значення без задання.</p>
+
+                </dd>
+            </div>
+            <div class="table-row">
+                <dt><code>inherit</code></dt>
+                <dd>
+                    <p>Вказує на спадковість властивостей від свого батьківського елемента.</p>
+
+                </dd>
+            </div>
+        </dl>
+    </section>
+
+    <section class="slide small">
+        <h2>CSS властивість z-index</h2>
+        <p>Властивість <code>z-index</code> визначає порядок стека елемента.
+            Іншими словами, Ви можете розмістити елемент на сторінці вище іншого елементу або перед ним.</p>
+
+        <p>
+            Будь-які позиційовані елементи на веб-сторінці накладаються один на одного в певному порядку, імітуючи тим
+            самим невидимий третій вимір, котрий перпендикулярний екрану. Кожен елемент може перебувати в цьому стеку,
+            як нижче, так і вище інших об'єктів на веб-сторінці.
+        </p>
+        <p>
+            Де саме буде перебувати елемент відносно інших елементів, задається за допомогою властивості
+            <code>z-index</code>.
+        </p>
+
+        <p>Ця властивість працює тільки для елементів, у яких значення положення задано як
+            <code>absolute</code>,
+            <code>relative</code> або
+            <code>fixed</code>
+            (<code>position:absolute</code>,
+            <code>position:relative</code>, <code>position:fixed</code>).
+        </p>
+    </section>
+
+    <section class="slide small">
+        <h2>Синтаксис</h2>
+        <p>
+            <code>
+                z-index: auto|number|initial|inherit;
+            </code>
+        </p>
+        <p>
+            Властивість <strong>z-index</strong> може отримувати 4 значення:
+        </p>
+
+        <dl class="values">
+            <div class="table-row">
+                <dt><code>auto</code></dt>
+                <dd>
+                    <p>Встановлює порядок стека еквівалентно батьківським елементам. Це без задання</p>
+
+                </dd>
+            </div>
+            <div class="table-row">
+                <dt><code>number</code></dt>
+                <dd>
+                    <p>Встановлює порядок стека елемента. Дозволяється використовувати від'ємні значення.</p>
+
+                </dd>
+            </div>
+            <div class="table-row">
+                <dt><code>initial</code></dt>
+                <dd>
+                    <p>Встановлює властивість у значення без задання</p>
+
+                </dd>
+            </div>
+            <div class="table-row">
+                <dt><code>inherit</code></dt>
+                <dd>
+                    <p>Вказує на спадковість властивості від свого батьківського елемента</p>
+
+                </dd>
+            </div>
+        </dl>
+    </section>
+
+    <section class="slide">
+        <h2>z-index demo</h2>
+        <input type="number" placeholder="auto" id="field"></input>
+        <div class="z-demo-wrapper">
+            <div class="z-block z-block-1">
+                <code>z-index: auto;</code>
+            </div>
+            <div class="z-block z-block-2" id="block">
+                <code>z-index: <strong id="newval">auto</strong>;</code>
+            </div>
+            <div class="z-block z-block-3">
+                <code>z-index: 5;</code>
+            </div>
+        </div>
+
+        <style>
+            input[type=number] {
+                padding: 4px;
+            }
+
+            .z-demo-wrapper {
+                position: relative;
+                margin-top: 36px;
+                height: 250px;
+            }
+
+            .z-block {
+                background-color: #eee;
+                border: 2px solid #666;
+                width: 150px;
+                height: 75px;
+                padding-top: 26px;
+                font-size: 14px;
+                position: absolute;
+            }
+
+            .z-block-1 {
+                top: 20px;
+                left: 20px;
+            }
+
+            .z-block-2 {
+                top: 105px;
+                left: 45px;
+            }
+
+            .z-block-3 {
+                top: 170px;
+                left: 70px;
+                z-index: 5;
+            }
+        </style>
+
+        <script>
+            const block = document.getElementById('block');
+            const newval = document.getElementById('newval');
+
+            document.getElementById('field').onchange = function() {
+                block.style.zIndex = this.value;
+                newval.innerHTML = this.value;
+            }
+        </script>
+    </section>
+
+    <div class="progress"></div>
+
+    <script src="node_modules/@shower/core/dist/shower.js"></script>
+    <!-- Copyright © 3000 Yours Truly, Famous Inc. -->
+
+</body>
+
+</html>
